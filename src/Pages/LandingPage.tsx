@@ -1,9 +1,13 @@
-import React from 'react'
+// import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
+    <div>
+        <p>Landing Page</p>
+        <Link to="/Login">Login</Link>
+    </div>
   )
 }
 
