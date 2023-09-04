@@ -4,7 +4,7 @@ import Dropdown from './Layout/DropDown';
 
 const Navbar = () => {
     return (
-        <nav className="bg-gray-800 p-4 m-3 rounded-md">
+        <nav className="bg-blue-700 p-4 m-3 rounded-md">
             <div className="container mx-auto">
                 <div className="flex items-center justify-between">
                     <div className="text-white font-semibold text-xl">Immersive Dashboard</div>

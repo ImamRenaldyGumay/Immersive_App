@@ -8,7 +8,7 @@ import Dashboard from "./Pages/Dashboard"
 
 const App = () => {
   return (
-    <>
+    <div className="bg-gray-300">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -17,7 +17,7 @@ const App = () => {
           {/* <Redirect path="/Dashboard" element={<Dashboard />} /> */}
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 

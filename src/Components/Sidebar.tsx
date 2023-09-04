@@ -2,7 +2,7 @@ import React from "react";
 
 function Sidebar() {
    return (
-      <aside className="bg-gray-900 text-white w-64 min-h-screen">
+      <aside className="bg-white text-black w-64 min-h-screen">
          <div className="p-4">
             {/* Brand Logo */}
             <div>
