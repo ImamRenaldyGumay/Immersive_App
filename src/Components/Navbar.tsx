@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Dropdown from './Layout/DropDown';
+
 const Navbar = () => {
     return (
         <nav className="bg-gray-800 p-4 m-3 rounded-md">
@@ -14,10 +16,7 @@ const Navbar = () => {
                     </div>
                     <div className="">
                         {/* Tautan-tautan menu */}
-                        <button>
-                            <p className='text-white'>Hello, John Doe</p>
-                        </button>
-
+                        <Dropdown/>
 
                     </div>
                 </div>
