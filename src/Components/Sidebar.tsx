@@ -5,9 +5,9 @@ function Sidebar() {
       <aside className="bg-white text-black w-64 min-h-screen">
          <div className="p-4">
             {/* Brand Logo */}
-            <div>
-               <h2 className="text-2xl font-semibold mb-4">Menu</h2>
-               <hr className="mb-3" />
+            <div className="flex justify-center mb-3 border-b-2 border-gray-500">
+               <img className="mb-3" src="src/assets/logo-ALTA.png" alt="" />
+               {/* <h1 className="text-xl font-semibold mb-4">Menu</h1> */}
             </div>
 
             <ul className="space-y-2">
