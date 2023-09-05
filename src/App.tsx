@@ -7,6 +7,7 @@ import Login from "./Pages/Login"
 import Dashboard from "./Pages/Dashboard"
 import ListMentee from "./Pages/ListMentee/indexMentee"
 import ClassPage from "./Pages/ClassPage/ClassPage"
+import TambahMentee from "./Pages/ListMentee/tambahMentee"
 
 const App = () => {
   return (
@@ -18,6 +19,8 @@ const App = () => {
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/ListMentee" element={<ListMentee />} />
           <Route path="/Class" element={<ClassPage />} />
+          <Route path="/TambahMentee" element={<TambahMentee />} />
+          
           {/* <Redirect path="/Dashboard" element={<Dashboard />} /> */}
         </Routes>
       </BrowserRouter>

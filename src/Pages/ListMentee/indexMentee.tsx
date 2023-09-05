@@ -19,8 +19,6 @@ function ListMentee() {
                     <div>
                         <div>
 
-                            
-
                         </div>
                         <CardMentee />
                     </div>
