@@ -8,7 +8,14 @@ export default {
     
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        'blue-dark': '#204C80', // Nama kelas kustom dan nilai warna
+      },
+      textColor: {
+        'blue-dark': '#204C80', // Nama kelas kustom dan nilai warna
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin')({
