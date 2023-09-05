@@ -45,6 +45,7 @@ function NewClassPage({}: Props) {
                   id="batch"
                   className="w-full p-2 border rounded-md shadow-lg"
                   placeholder="Enter batch"
+                  min="0"
                 />
               </div>
             </div>
