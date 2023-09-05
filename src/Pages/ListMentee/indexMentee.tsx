@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../Components/Navbar'
 import Sidebar from '../../Components/Sidebar'
 import Breadcrumb from '../../Components/Layout/Breadcrumb'
+import CardMentee from '../../Components/Layout/CardMentee'
 
 function ListMentee() {
     return (
@@ -12,11 +13,16 @@ function ListMentee() {
                     <Navbar />
                     {/* Konten Utama Dashboard */}
                     <div className='content-header flex justify-between m-4'>
-                        <h1 className='text-3xl font-bold leading-none tracking-tight'>Dashboard</h1>
+                        <h1 className='text-3xl font-bold leading-none tracking-tight'>Mentee List</h1>
                         <Breadcrumb />
                     </div>
                     <div>
-                        {/* <CardDashboard /> */}
+                        <div>
+
+                            
+
+                        </div>
+                        <CardMentee />
                     </div>
 
 
