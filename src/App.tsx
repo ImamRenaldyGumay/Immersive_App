@@ -1,12 +1,14 @@
 // import React from 'react'
-import { BrowserRouter, Routes, Route} from "react-router-dom"
 
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
-import LandingPage from './Pages/LandingPage'
 import Login from "./Pages/Login"
 import Dashboard from "./Pages/Dashboard"
+import LandingPage from './Pages/LandingPage'
 import ListMentee from "./Pages/ListMentee/indexMentee"
 import ClassPage from "./Pages/ClassPage/ClassPage"
+import NewClassPage from "./Pages/ClassPage/NewClassPage"
+import TeamPage from "./Pages/TeamPage/TeamPage"
 import TambahMentee from "./Pages/ListMentee/tambahMentee"
 
 const App = () => {
@@ -19,6 +21,8 @@ const App = () => {
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/ListMentee" element={<ListMentee />} />
           <Route path="/Class" element={<ClassPage />} />
+          <Route path="/NewClass" element={<NewClassPage />} />
+          <Route path="/Team" element={<TeamPage />} />
           <Route path="/TambahMentee" element={<TambahMentee />} />
           
           {/* <Redirect path="/Dashboard" element={<Dashboard />} /> */}
