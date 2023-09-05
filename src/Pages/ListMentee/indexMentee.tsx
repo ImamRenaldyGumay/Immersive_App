@@ -2,7 +2,8 @@ import React from 'react'
 import Navbar from '../../Components/Navbar'
 import Sidebar from '../../Components/Sidebar'
 import Breadcrumb from '../../Components/Layout/Breadcrumb'
-import CardMentee from '../../Components/Layout/CardMentee'
+import CardListMentee from '../../Components/Layout/CardListMentee'
+// import CardMentee from '../../Components/Layout/CardMentee'
 
 function ListMentee() {
     return (
@@ -20,7 +21,7 @@ function ListMentee() {
                         <div>
 
                         </div>
-                        <CardMentee />
+                        <CardListMentee />
                     </div>
 
 
