@@ -1,10 +1,13 @@
 import Navbar from "../../Components/Navbar";
 import React from "react";
 import Sidebar from "../../Components/Sidebar";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
 function ClassPage({}: Props) {
+    const navigate = useNavigate()
+    
   return (
     <>
       <div className="flex">
@@ -26,6 +29,7 @@ function ClassPage({}: Props) {
               </button>
               <button
                 className="px-4 py-2 ml-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none"
+                onClick={() => navigate('/NewClass')}
               >
                 Add New
               </button>
@@ -42,7 +46,18 @@ function ClassPage({}: Props) {
                 <tr>
                   <td className="p-2 border">-</td>
                   <td className="p-2 border">-</td>
-                  <td className="p-2 border"></td>
+                  <td className="p-2 border flex justify-center">
+                  <button
+                      className="px-3 py-1 bg-yellow-500 text-white rounded-md shadow-md hover:bg-yellow-600 focus:outline-none mx-1"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="px-3 py-1 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none mx-1"
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
