@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 
-interface ButtonProps {
+interface BtnloginProps {
   id: string;
   label?: string;
   onClick?: React.MouseEventHandler;
 }
 
-const Btnlogin: FC<ButtonProps> = ({ id, label, onClick }) => {
+const Btnlogin: FC<BtnloginProps> = ({ id, label, onClick }) => {
   return (
     <button
       id={id}
