@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+import Cookies from "js-cookie"
 import Navbar from "../../Components/Navbar";
 import Sidebar from "../../Components/Sidebar";
+import Swal from "sweetalert2";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -9,25 +11,56 @@ type Props = {};
 
 interface ClassData {
   id: number,
-  name: string,
+  class_name: string,
 }
 
 function ClassPage({}: Props) {
     const navigate = useNavigate()
     const [classData, setClassData] = useState<ClassData[]>([])
+    const token = Cookies.get("token");
 
     useEffect(() => {
       getClass()
     }, [])
 
     const getClass = () => {
-      axios.get("https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/classes")
+      axios.get("http://54.252.240.166/classes",{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         setClassData(response?.data?.data);
       })
       .catch((error) => {
         console.log(error);
       });
+    }
+
+    const deleteClass = (id: number) => {
+      axios.delete(`http://54.252.240.166/classes/${id}`,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    }).then(response => {
+      console.log(response);
+      
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: response.data.message,
+        confirmButtonText: "OK",
+      }).then(() => {
+        getClass()
+      });
+    }).catch(error => {
+      Swal.fire({
+        icon: "error",
+        title: "Failed",
+        text: `Something went wrong : ${error}`,
+        confirmButtonText: "OK",
+      });
+    })
     }
     
   return (
@@ -68,7 +101,7 @@ function ClassPage({}: Props) {
                 {classData?.map((item, index) => (
                   <tr>
                   <td className="p-2 border">{index + 1}</td>
-                  <td className="p-2 border">{item?.name}</td>
+                  <td className="p-2 border">{item?.class_name}</td>
                   <td className="p-2 border flex justify-center">
                   <button
                       className="px-3 py-1 bg-yellow-500 text-white rounded-md shadow-md hover:bg-yellow-600 focus:outline-none mx-1"
@@ -77,6 +110,7 @@ function ClassPage({}: Props) {
                     </button>
                     <button
                       className="px-3 py-1 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none mx-1"
+                      onClick={() => deleteClass(item?.id)}
                     >
                       Delete
                     </button>

@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import Swal from "sweetalert2";
-import Cookies from "js-cookie"
-import axios from "axios";
-
-import Inputlogin from "../Components/Inputlogin";
 import Btnlogin from "../Components/Btnlogin";
+import Cookies from "js-cookie"
+import Inputlogin from "../Components/Inputlogin";
 import Potologin from "../assets/13.jpg"
-
+import Swal from "sweetalert2";
+import axios from "axios";
+import { useNavigate } from "react-router";
+import { useState } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,13 +14,13 @@ const Login = () => {
 
   const handleLogin = () => {
     const body = {
-      username: "mor_2314",
-      password: "83r5^_",
+      email: "user1@mail.com",
+      password: "12345",
     };
     axios
-      .post("auth/login", body)
+      .post("http://54.252.240.166/login", body)
       .then((response) => {
-        const token = response?.data?.token;
+        const token = response?.data?.data?.token;
         Swal.fire({
           icon: "success",
           title: "Success",
