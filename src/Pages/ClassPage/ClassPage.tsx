@@ -1,12 +1,34 @@
+import React, { useEffect, useState } from "react";
+
 import Navbar from "../../Components/Navbar";
-import React from "react";
 import Sidebar from "../../Components/Sidebar";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
+interface ClassData {
+  id: number,
+  name: string,
+}
+
 function ClassPage({}: Props) {
     const navigate = useNavigate()
+    const [classData, setClassData] = useState<ClassData[]>([])
+
+    useEffect(() => {
+      getClass()
+    }, [])
+
+    const getClass = () => {
+      axios.get("https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/classes")
+      .then((response) => {
+        setClassData(response?.data?.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
     
   return (
     <>
@@ -43,9 +65,10 @@ function ClassPage({}: Props) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="p-2 border">-</td>
-                  <td className="p-2 border">-</td>
+                {classData?.map((item, index) => (
+                  <tr>
+                  <td className="p-2 border">{index + 1}</td>
+                  <td className="p-2 border">{item?.name}</td>
                   <td className="p-2 border flex justify-center">
                   <button
                       className="px-3 py-1 bg-yellow-500 text-white rounded-md shadow-md hover:bg-yellow-600 focus:outline-none mx-1"
@@ -59,6 +82,7 @@ function ClassPage({}: Props) {
                     </button>
                   </td>
                 </tr>
+                ))}
               </tbody>
             </table>
 
