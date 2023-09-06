@@ -1,72 +1,54 @@
-import React, { FC, useState, useEffect } from 'react'
-import axios from 'axios'
+// KomponenTable.tsx
 
-interface ListMentee {
-    id: number,
-    title?: string,
-    image?: string,
-    price?: string,
-    category?: string,
-    // gender: string,
-}
+import React, { useEffect, useState } from "react";
 
-const TableMentee: FC<ListMentee> = ({ id, title, image, price, category }) => {
+type Product = {
+    id: number;
+    title: string;
+    price: number;
+    category: string;
+};
 
-    const [mentee, setMentee] = useState([])
-
-    const getAllMentee = () => {
-        axios
-            .get("https://fakestoreapi.com/products")
-            .then((response) => {
-                setMentee(response?.data)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
+const TableMentee: React.FC = () => {
+    const [data, setData] = useState<Product[]>([]);
 
     useEffect(() => {
-        getAllMentee();
-    }, [])
+        fetch("https://fakestoreapi.com/products")
+            .then((response) => response.json())
+            .then((data) => setData(data));
+    }, []);
 
     return (
-        <div>
-            <table className="table-auto w-full p-3 border-collapse border border-slate-400">
-                <thead className='bg-slate-300'>
-                    <tr>
-                        <th className='border border-slate-600'>No.</th>
-                        <th className='border border-slate-600'>Name</th>
-                        <th className='border border-slate-600'>Class</th>
-                        <th className='border border-slate-600'>Status</th>
-                        <th className='border border-slate-600'>Category</th>
-                        <th className='border border-slate-600'>Gender</th>
-                        <th className='border border-slate-600'>Detail</th>
-                        <th className='border border-slate-600'>Edit</th>
-                        <th className='border border-slate-600'>Delete</th>
+        <table className="w-full border-collapse border">
+            <thead>
+                <tr className="bg-gray-300 border">
+                    <th className="p-2 border text-left">ID</th>
+                    <th className="p-2 border">Nama Produk</th>
+                    <th className="p-2 border">Harga</th>
+                    <th className="p-2 border">Kategori</th>
+                    <th className="p-2 border">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {data.map((product) => (
+                    <tr key={product.id}>
+                        <td className="p-2 border">{product.id}</td>
+                        <td className="p-2 border">{product.title}</td>
+                        <td className="p-2 border">${product.price.toFixed(2)}</td>
+                        <td className="p-2 border">{product.category}</td>
+                        <td className="p-2 border flex justify-center">
+                            <button className="px-3 py-1 bg-yellow-500 text-white rounded-md shadow-md hover:bg-yellow-600 focus:outline-none mx-1">
+                                Edit
+                            </button>
+                            <button className="px-3 py-1 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none mx-1">
+                                Delete
+                            </button>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {mentee.map((item) => {
-                        <tr>
-                            <td className='border border-slate-600'>{id}</td>
-                            <td className='border border-slate-600'>{title}</td>
-                            <td className='border border-slate-600'>{image}</td>
-                            <td className='border border-slate-600'>{price}</td>
-                            <td className='border border-slate-600'>{category}</td>
-                            {/* <td className='border border-slate-600'>{gender}</td> */}
-                            <td className='border border-slate-600'>detail</td>
-                            <td className='border border-slate-600'>edit</td>
-                            <td className='border border-slate-600'>delete</td>
-                        </tr>
-                    })}
+                ))}
+            </tbody>
+        </table>
+    );
+};
 
-                </tbody>
-
-            </table>
-
-
-        </div>
-    )
-}
-
-export default TableMentee
+export default TableMentee;
