@@ -1,9 +1,6 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-
-interface CardMenteeProps {
-
-}
+import tableMentee from '../TableMentee'
 
 const CardListMentee = () => {
     return (
@@ -81,38 +78,7 @@ const CardListMentee = () => {
 
 
                 {/* Start Table */}
-                <table className="table-auto w-full p-3 border-collapse border-slate-400">
-                    <thead className='bg-slate-300'>
-                        <tr>
-                            <th className='border border-slate-600'>No.</th>
-                            <th className='border border-slate-600'>Name</th>
-                            <th className='border border-slate-600'>Class</th>
-                            <th>Status</th>
-                            <th>Category</th>
-                            <th>Gender</th>
-                            <th>Detail</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td className='border border-slate-600'>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                            <td className='border border-slate-600'>Malcolm Lockyer</td>
-                            <td className='border border-slate-600'>1961</td>
-                        </tr>
-                        <tr>
-                            <td className='border border-slate-600'>Witchy Woman</td>
-                            <td className='border border-slate-600'>The Eagles</td>
-                            <td className='border border-slate-600'>1972</td>
-                        </tr>
-                        <tr>
-                            <td className='border border-slate-600'>Shining Star</td>
-                            <td className='border border-slate-600'>Earth, Wind, and Fire</td>
-                            <td className='border border-slate-600'>1975</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <tableMentee />
                 {/* End Table */}
 
 
