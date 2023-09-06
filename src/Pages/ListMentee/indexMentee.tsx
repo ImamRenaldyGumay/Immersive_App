@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+// import React from 'react'
 
 import Navbar from '../../Components/Navbar'
 import Sidebar from '../../Components/Sidebar'
 import Breadcrumb from '../../Components/Layout/Breadcrumb'
 import CardListMentee from '../../Components/Layout/CardListMentee'
-// import TableMentee from '../../Components/TableMentee'
-// import CardMentee from '../../Components/Layout/CardListMentee'
 
 const indexMentee = () => {
     return (
