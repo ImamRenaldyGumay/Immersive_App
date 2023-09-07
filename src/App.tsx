@@ -35,6 +35,7 @@ const App = () => {
           <Route path="/Team" element={<TeamPage />} />
           <Route path="/NewTeam" element={<NewTeamPage />} />
           <Route path="/TambahMentee" element={<TambahMentee />} />
+          <Route path="/userlist" element={<Userlist />} />
           
           {/* <Redirect path="/Dashboard" element={<Dashboard />} /> */}
         </Routes>
