@@ -15,6 +15,7 @@ import DetailMentee from "./Pages/ListMentee/DetailMentee"
 import NewTeamPage from "./Pages/TeamPage/NewTeamPage"
 import Adduser from "./Pages/ListUser/Adduser"
 import Userlist from "./Pages/ListUser/Userlist"
+import EditClassPage from './Pages/ClassPage/EditClassPage'
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/ListMentee" element={<ListMentee />} />
           <Route path="/Class" element={<ClassPage />} />
           <Route path="/NewClass" element={<NewClassPage />} />
+          <Route path="/EditClass" element={<EditClassPage />} />
           <Route path="/Team" element={<TeamPage />} />
           <Route path="/NewTeam" element={<NewTeamPage />} />
           <Route path="/TambahMentee" element={<TambahMentee />} />
