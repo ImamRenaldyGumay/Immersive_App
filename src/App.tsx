@@ -35,6 +35,7 @@ const App = () => {
           <Route path="/NewTeam" element={<NewTeamPage />} />
           <Route path="/TambahMentee" element={<TambahMentee />} />
           <Route path="/userlist" element={<Userlist />} />
+          <Route path='/detailmentee/:id' element={<DetailMentee />} />
           
         </Routes>
       </BrowserRouter>
