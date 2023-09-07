@@ -142,7 +142,10 @@ const indexMentee = () => {
 
                                         <td className="p-2 border text-center">
                                             <button className="px-3 py-1 bg-green-500 text-white rounded-md shadow-md hover:bg-yellow-600 focus:outline-none mx-1">
+                                                <a href="/DetailMentee">
                                                 Detail
+                                                </a>
+                                                
                                             </button>
                                         </td>
                                         <td className="p-2 border flex justify-center">
