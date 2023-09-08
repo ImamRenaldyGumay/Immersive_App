@@ -15,6 +15,7 @@ const Login = () => {
   const handleLogin = () => {
     
     const body = {
+
       email: email,
       password: password,
     };
@@ -26,6 +27,7 @@ const Login = () => {
         const token = response?.data?.data?.token;
         const email = response?.data?.data?.email;
         const role = response?.data?.data?.role;
+
         Swal.fire({
           icon: "success",
           title: "Success",
