@@ -19,6 +19,7 @@ import NewTeamPage from "./Pages/TeamPage/NewTeamPage"
 import Adduser from "./Pages/ListUser/Adduser"
 import Userlist from "./Pages/ListUser/Userlist"
 import EditClassPage from './Pages/ClassPage/EditClassPage'
+import EditMentee from './Pages/ListMentee/EditMentee'
 
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/userlist" element={<Userlist />} />
           <Route path='/detailmentee/:id' element={<DetailMentee />} />
           <Route path='/tambahfeedback' element={<TambahFeedback />} />
+          <Route path='/editmentee/:id' element={<EditMentee />} />
           
         </Routes>
       </BrowserRouter>
