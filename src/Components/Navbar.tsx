@@ -1,8 +1,30 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
 
 import Dropdown from './Layout/DropDown';
 
 const Navbar = () => {
+
+    const navigate = useNavigate(); 
+
+  const handleLogout = () => {
+    Cookies.remove('username');
+    Cookies.remove('token');
+    Swal.fire({
+      icon: 'success',
+      title: 'Success',
+      text: 'Successfully Logout',
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+    }).then((response) => {
+      if (response?.isConfirmed) {
+        navigate('/Login'); 
+      }
+    });
+  };
+
     return (
         <nav className="bg-blue-700 p-4 m-3 rounded-md">
             <div className="container mx-auto">
@@ -19,6 +41,14 @@ const Navbar = () => {
                         <Dropdown/>
 
                     </div>
+                    <div className="py-2">
+                  <a
+                    onClick={() => handleLogout()}
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  >
+                    Logout
+                  </a>
+                </div>
                 </div>
             </div>
         </nav>

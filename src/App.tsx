@@ -7,7 +7,7 @@ import axios from "axios"
 
 import Login from "./Pages/Login"
 import Dashboard from "./Pages/Dashboard"
-import LandingPage from './Pages/LandingPage'
+
 import ListMentee from "./Pages/ListMentee/indexMentee"
 import ClassPage from "./Pages/ClassPage/ClassPage"
 import NewClassPage from "./Pages/ClassPage/NewClassPage"
@@ -20,13 +20,13 @@ import Userlist from "./Pages/ListUser/Userlist"
 
 const App = () => {
 
-  axios.defaults.baseURL = "https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0"
+  axios.defaults.baseURL = "http://54.252.240.166/"
 
   return (
     <div className="bg-gray-300">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Adduser />} />
+          <Route path="/" element={<Login />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/ListMentee" element={<ListMentee />} />
@@ -35,6 +35,8 @@ const App = () => {
           <Route path="/Team" element={<TeamPage />} />
           <Route path="/NewTeam" element={<NewTeamPage />} />
           <Route path="/TambahMentee" element={<TambahMentee />} />
+          <Route path="/Userlist" element={<Userlist />} />
+          <Route path="/Adduser" element={<Adduser />} />
           
           {/* <Redirect path="/Dashboard" element={<Dashboard />} /> */}
         </Routes>

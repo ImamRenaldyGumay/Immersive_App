@@ -1,43 +1,50 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import Swal from "sweetalert2";
-import Cookies from "js-cookie"
-import axios from "axios";
-
-import Inputlogin from "../Components/Inputlogin";
 import Btnlogin from "../Components/Btnlogin";
+import Cookies from "js-cookie"
+import Inputlogin from "../Components/Inputlogin";
 import Potologin from "../assets/13.jpg"
-
+import Swal from "sweetalert2";
+import axios from "axios";
+import { useNavigate } from "react-router";
+import { useState } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleLogin = () => {
+    
     const body = {
-      username: "mor_2314",
-      password: "83r5^_",
+      email: email,
+      password: password,
     };
     axios
-      .post("auth/login", body)
+      .post("login", body)
       .then((response) => {
-        const token = response?.data?.token;
+        console.log(response)
+      
+        const token = response?.data?.data?.token;
+        const email = response?.data?.data?.email;
+        const role = response?.data?.data?.role;
         Swal.fire({
           icon: "success",
           title: "Success",
-          text: `Welcome to Satset, ${username}`,
+          text: `Welcome to Dashboard, ${email}`,
           confirmButtonText: "OK",
         }).then((response) => {
+          
           if (response.isConfirmed) {
             Cookies.set("token", token);
-            Cookies.set("username", username);
-            navigate("/product");
+            Cookies.set("email", email);
+            Cookies.set("role", role);
+            navigate("/Userlist");
           }
         });
       })
       .catch((error) => {
+        console.log(error.response)
         Swal.fire({
+
           icon: "error",
           title: "Failed",
           text: `Something went wrong : ${error}`,
@@ -47,7 +54,7 @@ const Login = () => {
   };
 
   return (
-    <section className="w-screen h-screen">
+    <section className="w-screen h-screen bg-white">
       <div className="grid grid-cols-2">
       <div className="w-full h-screen flex justify-center items-center">
           <img src={Potologin} width={400} height={400} />
@@ -58,8 +65,8 @@ const Login = () => {
             name="username"
             label="Username"
             type="username"
-            value={username}
-            onChange={(e: any) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e: any) => setEmail(e.target.value)}
           />
           <Inputlogin
             id="password"
