@@ -1,27 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React, { FC, useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+
 
 import Navbar from '../../Components/Navbar'
 import Sidebar from '../../Components/Sidebar'
 import Breadcrumb from '../../Components/Layout/Breadcrumb'
 
-interface MenteeData {
-    id: number,
-    full_name: string,
-    class: string,
-    status: string,
-    education_type: string,
-    gender: string
-}
+import TableMentee from '../../Components/Tabel/TableMentee'
 
 const indexMentee = () => {
 
-    const [Mentee, setMentee] = useState<MenteeData[]>([]);
+    const [Mentee, setMentee] = useState<[]>([]);
+    const navigate = useNavigate();
+
+    const DetailTo = (id: number) => {
+        navigate(`/detailmentee/${id}`, {
+            state: {
+                id: id,
+            }
+        });
+    }
 
     const getAllMentee = () => {
         axios
             .get("https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees")
             .then((response) => {
+                console.log(response)
                 setMentee(response?.data?.data);
             })
             .catch((error) => {
@@ -131,32 +136,17 @@ const indexMentee = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Mentee.map((mentee) => (
-                                    <tr key={mentee.id}>
-                                        <td className="p-2 border text-left">{mentee.id}</td>
-                                        <td className="p-2 border text-left">{mentee.full_name}</td>
-                                        <td className="p-2 border text-center">{mentee.class}</td>
-                                        <td className="p-2 border text-center">{mentee.status}</td>
-                                        <td className="p-2 border text-center">{mentee.education_type}</td>
-                                        <td className="p-2 border text-center">{mentee.gender}</td>
-
-                                        <td className="p-2 border text-center">
-                                            <button className="px-3 py-1 bg-green-500 text-white rounded-md shadow-md hover:bg-yellow-600 focus:outline-none mx-1">
-                                                <a href="/DetailMentee">
-                                                Detail
-                                                </a>
-                                                
-                                            </button>
-                                        </td>
-                                        <td className="p-2 border flex justify-center">
-                                            <button className="px-3 py-1 bg-yellow-300 text-white rounded-md shadow-md hover:bg-yellow-600 focus:outline-none mx-1">
-                                                Edit
-                                            </button>
-                                            <button className="px-3 py-1 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none mx-1">
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
+                                {Mentee.map((item: any, index) => (
+                                    <TableMentee
+                                        key={index}
+                                        id={item?.id}
+                                        full_name={item?.full_name}
+                                        kelas={item?.class}
+                                        status={item?.status}
+                                        education_type={item?.education_type}
+                                        gender={item?.gender}
+                                        onClick={() => DetailTo(item?.id)}
+                                    />
                                 ))}
 
                                 {/* <CardListMentee /> */}

@@ -12,6 +12,7 @@ import NewClassPage from "./Pages/ClassPage/NewClassPage"
 import TeamPage from "./Pages/TeamPage/TeamPage"
 import TambahMentee from "./Pages/ListMentee/tambahMentee"
 import DetailMentee from "./Pages/ListMentee/DetailMentee"
+import TambahFeedback from './Pages/ListMentee/TambahFeedback'
 import NewTeamPage from "./Pages/TeamPage/NewTeamPage"
 import Adduser from "./Pages/ListUser/Adduser"
 import Userlist from "./Pages/ListUser/Userlist"
@@ -28,7 +29,6 @@ const App = () => {
         <Routes>
 
           <Route path="/" element={<Login />} />
-
           <Route path="/Login" element={<Login />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/ListMentee" element={<ListMentee />} />
@@ -41,6 +41,9 @@ const App = () => {
 
           <Route path="/Userlist" element={<Userlist />} />
           <Route path="/Adduser" element={<Adduser />} />
+          <Route path="/userlist" element={<Userlist />} />
+          <Route path='/detailmentee/:id' element={<DetailMentee />} />
+          <Route path='/tambahfeedback' element={<TambahFeedback />} />
           
         </Routes>
       </BrowserRouter>
