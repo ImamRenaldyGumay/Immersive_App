@@ -8,8 +8,11 @@ import Cookies from 'js-cookie'
 import Navbar from '../../Components/Navbar'
 import Sidebar from '../../Components/Sidebar'
 import Breadcrumb from '../../Components/Layout/Breadcrumb'
-
 import TableMentee from '../../Components/Tabel/TableMentee'
+
+interface indexMenteeProps {
+    onClick: React.MouseEventHandler
+}
 
 const indexMentee = () => {
 
@@ -79,22 +82,22 @@ const indexMentee = () => {
             navigate('/login');
         } else {
             axios
-            // .get("https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees")
-            .get(`mentees`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                console.log(response)
-                setMentee(response?.data?.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+                // .get("https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees")
+                .get(`mentees`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    console.log(response)
+                    setMentee(response?.data?.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
         }
-        
-        
+
+
     }
 
     useEffect(() => {
@@ -200,6 +203,7 @@ const indexMentee = () => {
                             </thead>
                             <tbody>
                                 {Mentee.map((item: any, index) => (
+                                    
                                     <TableMentee
                                         key={index}
                                         id={item?.id}

@@ -3,8 +3,8 @@ import { Info } from 'react-feather'
 
 interface DetailButtonProps {
     id: string,
-    label: string,
-    onClick?: React.MouseEventHandler
+    label?: string,
+    onClick?: React.MouseEventHandler<Element>
 }
 
 const DetailButton: FC<DetailButtonProps> = ({ id, label, onClick }) => {

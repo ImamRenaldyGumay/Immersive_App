@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 interface DetailFeedbackProps {
-    id: string,
+    // id: string,
     status: string,
     notes: string,
 }
 
-const DetailFeedback: FC<DetailFeedbackProps> = ({ id, status, notes }) => {
+const DetailFeedback: FC<DetailFeedbackProps> = ({ status, notes }) => {
     return (
         <>
             <div className='bg-slate-200 ml-10 mb-4 border-4 pb-5 p-4'>
