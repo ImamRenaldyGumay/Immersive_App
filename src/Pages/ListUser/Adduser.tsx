@@ -10,14 +10,12 @@ const Adduser = () => {
                 <Sidebar />
                 <main className="flex-grow">
                     <Navbar />
-                    {/* Konten Utama Dashboard */}
                     <div className='content-header flex justify-between m-4'>
                         <h1 className='text-3xl font-bold leading-none tracking-tight'>Dashboard</h1>
                     </div>
                     <div className="max-w-full p-4 bg-white border border-gray-200 m-4 rounded-lg shadow">
                         <h1 className='text-blue-dark text-center text-2xl'>NEW USER</h1>
                         
-                        {/* Input Fullname */}
                         <div className="mb-4">
                             <label htmlFor="fullname" className="block text-gray-700 font-semibold">Fullname</label>
                             <input
@@ -28,7 +26,6 @@ const Adduser = () => {
                             />
                         </div>
                         
-                        {/* Input Email */}
                         <div className="mb-4">
                             <label htmlFor="email" className="block text-gray-700 font-semibold">Email</label>
                             <input
@@ -39,9 +36,7 @@ const Adduser = () => {
                             />
                         </div>
 
-                        {/* Dropdowns Group */}
-                        <div className="mb-4 flex flex-row items-center justify-center"> {/* Menggunakan flex dan flex-row */}
-                            {/* Dropdown Team */}
+                        <div className="mb-4 flex flex-row items-center justify-center">
                             <div className="mr-4">
                                 <label htmlFor="team" className="block text-gray-700 font-semibold">Team</label>
                                 <select
@@ -54,7 +49,6 @@ const Adduser = () => {
                                 </select>
                             </div>
 
-                            {/* Dropdown Role */}
                             <div className="mr-4">
                                 <label htmlFor="role" className="block text-gray-700 font-semibold">Role</label>
                                 <select
@@ -67,7 +61,6 @@ const Adduser = () => {
                                 </select>
                             </div>
 
-                            {/* Dropdown Status */}
                             <div>
                                 <label htmlFor="status" className="block text-gray-700 font-semibold">Status</label>
                                 <select
@@ -76,7 +69,7 @@ const Adduser = () => {
                                 >
                                     <option value="">Select Status</option>
                                     <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
+                                    <option value="inactive">No-Active</option>
                                 </select>
                             </div>
                         </div>

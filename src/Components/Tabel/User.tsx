@@ -1,7 +1,13 @@
 import React from 'react';
-import { Edit2, Trash2 } from 'react-feather'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const User = () => {
+interface UserProps {
+  role: string | undefined;
+}
+
+const User: React.FC<UserProps> = ({ role }) => {
+
   return (
     <div className="max-w-full p-4 bg-white border border-gray-200 m-4 rounded-lg shadow">
       <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
@@ -26,14 +32,18 @@ const User = () => {
             <td className="px-6 py-4 whitespace-no-wrap border">Data 1,5</td>
             <td className="px-6 py-4 whitespace-no-wrap border">Data 1,6</td>
             <td className="px-6 py-4 whitespace-no-wrap border">
-              <button className='flex items-center'>
-                <Edit2 size={25} />
-              </button>
+              {role && role.toLowerCase() !== "user" && (
+                <button className='flex items-center'>
+                  <FontAwesomeIcon icon={faEdit} size="lg" />
+                </button>
+              )}
             </td>
             <td className="px-6 py-4 whitespace-no-wrap border">
-              <button className='flex items-center'>
-                <Trash2 size={25} />
-              </button>
+              {role && role.toLowerCase() !== "user" && (
+                <button className='flex items-center'>
+                  <FontAwesomeIcon icon={faTrash} size="lg" />
+                </button>
+              )}
             </td>
           </tr>
           {/* Tambahkan baris lainnya sesuai kebutuhan */}

@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Cookies from "js-cookie"
 import Navbar from "../../Components/Navbar";
 import Sidebar from "../../Components/Sidebar";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
-function NewClassPage({}: Props) {
+function EditClassPage({}: Props) {
+  const location = useLocation();
   const navigate = useNavigate()
   const token = Cookies.get("token");
   const [name, setName] = useState();
   const [batch, setBatch] = useState();
+
+  useEffect(() => {
+    getDetailClass()
+  }, [])
 
   const handleName = (e: any) => {
     setName(e?.target?.value);
@@ -23,8 +28,23 @@ function NewClassPage({}: Props) {
     setBatch(e?.target?.value);
   }
 
+  const getDetailClass = () => {
+    axios
+      .get(`http://54.252.240.166/classes/${location?.state?.id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+         }
+      })
+      .then((response) => {
+        setName(response.data.data.class_name);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const submitClass = () => {
-    axios.post('http://54.252.240.166/classes', {
+    axios.put(`http://54.252.240.166/classes/${location?.state?.id}`, {
       "class_name": name
     },{
       headers: {
@@ -59,7 +79,7 @@ function NewClassPage({}: Props) {
           {/* Konten Utama Dashboard */}
           <div className="flex-grow bg-white p-4 m-3 rounded-md">
             <h1 className="text-2xl text-blue-dark font-semibold text-center">
-              New Class
+              Edit Class
             </h1>
 
             <div className="flex justify-center md:flex-row md:space-x-4 mt-12">
@@ -75,6 +95,7 @@ function NewClassPage({}: Props) {
                   id="className"
                   className="w-full p-2 border rounded-md shadow-lg"
                   placeholder="Enter class name"
+                  value={name}
                   onChange={handleName}
                 />
               </div>
@@ -112,4 +133,4 @@ function NewClassPage({}: Props) {
   );
 }
 
-export default NewClassPage;
+export default EditClassPage;
