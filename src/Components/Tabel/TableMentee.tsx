@@ -3,6 +3,7 @@ import { Trash, Edit, Info } from 'react-feather'
 
 import DetailButton from '../new/DetailButton'
 import DeleteButton from '../new/DeleteButton'
+import EditButton from '../new/EditButton'
 
 interface TableMenteeProps {
     id: number,
@@ -13,9 +14,10 @@ interface TableMenteeProps {
     gender: string,
     onClick: React.MouseEventHandler
     onClick2: React.MouseEventHandler
+    onClick3: React.MouseEventHandler
 };
 
-const TableMentee: FC<TableMenteeProps> = ({ id, full_name, kelas, status, education_type, gender, onClick, onClick2 }) => {
+const TableMentee: FC<TableMenteeProps> = ({ id, full_name, kelas, status, education_type, gender, onClick, onClick2, onClick3 }) => {
     return (
         <>
             <tr>
@@ -34,9 +36,14 @@ const TableMentee: FC<TableMenteeProps> = ({ id, full_name, kelas, status, educa
                     />
                 </td>
                 <td className="p-2 border flex justify-center">
-                    <button className="flex items-center gap-3 px-3 py-1 mx-4 bg-yellow-300 text-white rounded-md shadow-md hover:bg-yellow-600 focus:outline-none mx-1">
+                    {/* <button className="flex items-center gap-3 px-3 py-1 mx-4 bg-yellow-300 text-white rounded-md shadow-md hover:bg-yellow-600 focus:outline-none mx-1">
                         <Edit />Edit
-                    </button>
+                    </button> */}
+                    <EditButton
+                    id='edit'
+                    label='Edit'
+                    onClick3={onClick3}
+                    />
                     <DeleteButton
                         id='delete'
                         label='Delete'

@@ -25,16 +25,24 @@ const indexMentee = () => {
         });
     }
 
+    const handleEditMentee = (id: number) => {
+        navigate(`/editmentee/${id}`, {
+            state: {
+                id: id,
+            }
+        });
+    }
+
     const handleDeleteMentee = (id: number) => {
         Swal.fire({
-            title: 'Do you want to save the changes?',
+            title: 'Are You Sure For Delete?',
             showCancelButton: true,
-            confirmButtonText: 'Save',
-          }).then((result) => {
+            confirmButtonText: 'Yes!',
+        }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 axios
-                .delete(`https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees/${id}`)
+                    .delete(`https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees/${id}`)
                     // .delete(`http://54.252.240.166/mentees/${id}`, {
                     //     headers: {
                     //         Authorization: `Bearer ${token}`,
@@ -42,7 +50,7 @@ const indexMentee = () => {
                     // })
                     .then((response) => {
                         console.log(response);
-        
+
                         Swal.fire({
                             icon: "success",
                             title: "Success",
@@ -61,14 +69,24 @@ const indexMentee = () => {
                         });
                     });
             } else if (result.isDenied) {
-              Swal.fire('Changes are not saved', '', 'info')
+                Swal.fire('Changes are not saved', '', 'info')
             }
-          })
+        })
     };
 
     const getAllMentee = () => {
+        // if (token === undefined) {
+        //     navigate('/login');
+        // } else {
+            
+        // }
         axios
             .get("https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees")
+            // .get(`mentees`, {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`,
+            //     },
+            // })
             .then((response) => {
                 console.log(response)
                 setMentee(response?.data?.data);
@@ -76,6 +94,7 @@ const indexMentee = () => {
             .catch((error) => {
                 console.log(error);
             })
+        
     }
 
     useEffect(() => {
@@ -191,6 +210,7 @@ const indexMentee = () => {
                                         gender={item?.gender}
                                         onClick={() => DetailTo(item?.id)}
                                         onClick2={() => handleDeleteMentee(item?.id)}
+                                        onClick3={() => handleEditMentee(item?.id)}
                                     />
                                 ))}
 
