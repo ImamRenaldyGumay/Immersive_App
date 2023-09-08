@@ -1,6 +1,8 @@
 import React, { FC, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import Cookies from 'js-cookie'
 
 
 import Navbar from '../../Components/Navbar'
@@ -13,6 +15,7 @@ const indexMentee = () => {
 
     const [Mentee, setMentee] = useState<[]>([]);
     const navigate = useNavigate();
+    const token = Cookies.get("token");
 
     const DetailTo = (id: number) => {
         navigate(`/detailmentee/${id}`, {
@@ -21,6 +24,47 @@ const indexMentee = () => {
             }
         });
     }
+
+    const handleDeleteMentee = (id: number) => {
+        Swal.fire({
+            title: 'Do you want to save the changes?',
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                axios
+                .delete(`https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees/${id}`)
+                    // .delete(`http://54.252.240.166/mentees/${id}`, {
+                    //     headers: {
+                    //         Authorization: `Bearer ${token}`,
+                    //     },
+                    // })
+                    .then((response) => {
+                        console.log(response);
+        
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: response.data.message,
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            getAllMentee();
+                        });
+                    })
+                    .catch((error) => {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Failed",
+                            text: `Something went wrong : ${error}`,
+                            confirmButtonText: "OK",
+                        });
+                    });
+            } else if (result.isDenied) {
+              Swal.fire('Changes are not saved', '', 'info')
+            }
+          })
+    };
 
     const getAllMentee = () => {
         axios
@@ -146,10 +190,10 @@ const indexMentee = () => {
                                         education_type={item?.education_type}
                                         gender={item?.gender}
                                         onClick={() => DetailTo(item?.id)}
+                                        onClick2={() => handleDeleteMentee(item?.id)}
                                     />
                                 ))}
 
-                                {/* <CardListMentee /> */}
                             </tbody>
                         </table>
                         {/* End Table */}
