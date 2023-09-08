@@ -13,16 +13,14 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
 
   const handleLogin = () => {
-    
     const body = {
-
       email: email,
       password: password,
     };
     axios
       .post("login", body)
       .then((response) => {
-        console.log(response)
+        
       
         const token = response?.data?.data?.token;
         const email = response?.data?.data?.email;

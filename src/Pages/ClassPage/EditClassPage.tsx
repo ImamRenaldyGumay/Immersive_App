@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Cookies from "js-cookie"
@@ -14,7 +14,7 @@ function EditClassPage({}: Props) {
   const navigate = useNavigate()
   const token = Cookies.get("token");
   const [name, setName] = useState();
-  const [batch, setBatch] = useState();
+  // const [batch, setBatch] = useState();
 
   useEffect(() => {
     getDetailClass()
@@ -24,9 +24,9 @@ function EditClassPage({}: Props) {
     setName(e?.target?.value);
   } 
 
-  const handleBatch = (e: any) => {
-    setBatch(e?.target?.value);
-  }
+  // const handleBatch = (e: any) => {
+  //   setBatch(e?.target?.value);
+  // }
 
   const getDetailClass = () => {
     axios
