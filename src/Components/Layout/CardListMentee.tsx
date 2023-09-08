@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
-import { Link } from 'react-router-dom'
-import TableMentee from '../../Components/TableMentee'
+// import React, { FC } from 'react'
+// import { Link } from 'react-router-dom'
+// import TableMentee from '../Tabel/TableMentee'
 
 const CardListMentee = () => {
     return (
@@ -78,7 +78,7 @@ const CardListMentee = () => {
 
 
                 {/* Start Table */}
-                <TableMentee />
+                {/* <TableMentee /> */}
                 {/* End Table */}
 
 
