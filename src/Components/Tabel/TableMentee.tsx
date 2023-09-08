@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { Trash, Edit, Info } from 'react-feather'
 
 import DetailButton from '../new/DetailButton'
 import DeleteButton from '../new/DeleteButton'

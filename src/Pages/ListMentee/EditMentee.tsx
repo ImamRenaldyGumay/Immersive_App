@@ -72,7 +72,11 @@ const EditMentee = () => {
     }
     const getEditData = (id: any) => {
         axios
-            .get(`https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees/${id}`)
+            .get(`mentees/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
             .then((response) => {
                 console.log('response : ', response);
                 setEditData(response?.data?.data);
@@ -88,48 +92,48 @@ const EditMentee = () => {
 
     const handleSubmitEdit = () => {
         axios
-        .put(`https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees/${location?.state?.id}`, {
-            "full_name": full_name,
-            "current_address": current_address,
-            "home_address": home_address,
-            "email": email,
-            "gender": gender,
-            "telegram": telegram,
-            "phone": phone,
-            "emergency_name": emergency_name,
-            "emergency_phone": emergency_phone,
-            "emergency_status": emergency_status,
-            "education_type": education_type,
-            "major": major,
-            "graduate": graduate
-        }
-        // ,{
-        //   headers: {
-        //     Authorization: `Bearer ${token}`
-        //   }
-        // }
-        )
-        .then(response => {
-          console.log(response);
-          
-          Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: response.data.message,
-            confirmButtonText: "OK",
-          }).then(() => {
-            navigate("/ListMentee")
-          });
-        })
-        .catch(error => {
-          Swal.fire({
-            icon: "error",
-            title: "Failed",
-            text: `Something went wrong : ${error}`,
-            confirmButtonText: "OK",
-          });
-        })
-      }
+            .put(`https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees/${location?.state?.id}`, {
+                "full_name": full_name,
+                "current_address": current_address,
+                "home_address": home_address,
+                "email": email,
+                "gender": gender,
+                "telegram": telegram,
+                "phone": phone,
+                "emergency_name": emergency_name,
+                "emergency_phone": emergency_phone,
+                "emergency_status": emergency_status,
+                "education_type": education_type,
+                "major": major,
+                "graduate": graduate
+            }
+                // ,{
+                //   headers: {
+                //     Authorization: `Bearer ${token}`
+                //   }
+                // }
+            )
+            .then(response => {
+                console.log(response);
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: response.data.message,
+                    confirmButtonText: "OK",
+                }).then(() => {
+                    navigate("/ListMentee")
+                });
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Failed",
+                    text: `Something went wrong : ${error}`,
+                    confirmButtonText: "OK",
+                });
+            })
+    }
 
     return (
         <>
@@ -154,8 +158,8 @@ const EditMentee = () => {
                                         id='full_name'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
                                         // value={editData.full_name}
-                                        // onChange={(e) => setFull_name(e.target.value)}
-                                        />
+                                        onChange={handlefull_name}
+                                    />
                                 </div>
                                 <div className='flex justify-between mb-3 items-center'>
                                     <label htmlFor="Address" className='md:w-2/12 font-medium text-blue-500'>Address</label>
@@ -164,8 +168,8 @@ const EditMentee = () => {
                                         id='current_address'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
                                         // value={editData.current_address}
-                                        onChange={handlecurrent_address} 
-                                        />
+                                        onChange={handlecurrent_address}
+                                    />
                                 </div>
                                 <div className='flex justify-between mb-3 items-center'>
                                     <label htmlFor="HomeAddress" className='md:w-2/12 font-medium text-blue-500'>Home Address</label>
@@ -196,7 +200,7 @@ const EditMentee = () => {
                                                 value="male"
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                                                 onChange={handleGender}
-                                                // checked={editData.gender === 'Male'}
+                                            // checked={editData.gender === 'Male'}
                                             />
                                             <label htmlFor="inline-radio" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
                                         </div>
@@ -208,7 +212,7 @@ const EditMentee = () => {
                                                 value="male"
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                                                 onChange={handleGender}
-                                                // checked={editData.gender === 'Female'}
+                                            // checked={editData.gender === 'Female'}
                                             />
                                             <label htmlFor="inline-2-radio" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
                                         </div>
@@ -284,7 +288,7 @@ const EditMentee = () => {
                                                 value="informatics"
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                                                 onChange={handleType}
-                                                // checked={editData.education_type === 'informatics'}
+                                            // checked={editData.education_type === 'informatics'}
                                             />
                                             <label htmlFor="inline-radio" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Informatics</label>
                                         </div>
@@ -296,7 +300,7 @@ const EditMentee = () => {
                                                 value="non-informatics"
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                                                 onChange={handleType}
-                                                // checked={editData.education_type === 'non-informatics'}
+                                            // checked={editData.education_type === 'non-informatics'}
                                             />
                                             <label htmlFor="inline-2-radio" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">non-informatics</label>
                                         </div>
@@ -323,9 +327,9 @@ const EditMentee = () => {
 
                             </div>
                             <div className='flex justify-end my-5'>
-                                <button 
-                                onClick={handleSubmitEdit}
-                                className='text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-10 py-3'>Submit</button>
+                                <button
+                                    onClick={handleSubmitEdit}
+                                    className='text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-10 py-3'>Submit</button>
                             </div>
 
 
