@@ -75,18 +75,16 @@ const indexMentee = () => {
     };
 
     const getAllMentee = () => {
-        // if (token === undefined) {
-        //     navigate('/login');
-        // } else {
-            
-        // }
-        axios
-            .get("https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees")
-            // .get(`mentees`, {
-            //     headers: {
-            //         Authorization: `Bearer ${token}`,
-            //     },
-            // })
+        if (token === undefined) {
+            navigate('/login');
+        } else {
+            axios
+            // .get("https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees")
+            .get(`mentees`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then((response) => {
                 console.log(response)
                 setMentee(response?.data?.data);
@@ -94,6 +92,8 @@ const indexMentee = () => {
             .catch((error) => {
                 console.log(error);
             })
+        }
+        
         
     }
 

@@ -67,7 +67,22 @@ const CardNewMentee = () => {
 
     const submitAddMentee = () => {
         axios
-            .post('https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees', {
+            // .post('https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees', {
+            //     "full_name": full_name,
+            //     "current_address": current_address,
+            //     "home_address": home_address,
+            //     "email": email,
+            //     "gender": gender,
+            //     "telegram": telegram,
+            //     "phone": phone,
+            //     "emergency_name": emergency_name,
+            //     "emergency_phone": emergency_phone,
+            //     "emergency_status": emergency_status,
+            //     "education_type": education_type,
+            //     "major": major,
+            //     "graduate": graduate
+            // })
+            .post(`mentees`, {
                 "full_name": full_name,
                 "current_address": current_address,
                 "home_address": home_address,
@@ -81,6 +96,10 @@ const CardNewMentee = () => {
                 "education_type": education_type,
                 "major": major,
                 "graduate": graduate
+            },{
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
             })
             .then(response => {
                 console.log(response);
