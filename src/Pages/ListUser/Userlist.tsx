@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 import Cookies from 'js-cookie';
 import Navbar from '../../Components/Navbar';
 import Sidebar from '../../Components/Sidebar';

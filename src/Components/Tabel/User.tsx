@@ -3,9 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
+import { useNavigate, Navigate } from 'react-router';
 
 interface UserData {
-  id: number;
+  ID: number;
   full_name: string;
   email: string; 
   team: string; 
@@ -18,11 +20,14 @@ interface UserProps {
 }
 
 const User: React.FC<UserProps> = ({ role }) => {
+  const navigate = useNavigate()
   const token = Cookies.get('token');
   const [users, setUsers] = useState<UserData[]>([]);
-  // const [FullName, setFullName] = useState("")
 
   const getUsers = () => {
+    if (token === undefined) {
+      navigate('/Login');
+  } else {
     axios
       .get('users', {
         headers: {
@@ -36,29 +41,40 @@ const User: React.FC<UserProps> = ({ role }) => {
       .catch((error) => {
         console.log(error.response);
       });
+  }
+}
+    
+
+  const deleteUsers = (ID: number) => {
+    axios
+      .delete(`users/${ID}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: response.data.message,
+          confirmButtonText: "OK",
+        }).then(() => {
+          getUsers();
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Failed",
+          text: `Something went wrong: ${error}`,
+          confirmButtonText: "OK",
+        });
+      });
   };
 
-
-  // const getUpdateUsers= () => {
-  //   axios
-  //     .get('users:id', {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       console.log(response);
-  //       setUsers(response?.data?.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response);
-  //     });
-  // };
-
-
-
   useEffect(() => {
-    // getUpdateUsers();
     getUsers();
   }, []);
 
@@ -95,7 +111,7 @@ const User: React.FC<UserProps> = ({ role }) => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {users.map((user, index) => (
-            <tr key={user.id}>
+            <tr key={user.ID}>
               <td className="px-6 py-4 whitespace-no-wrap border">{index + 1}</td>
               <td className="px-6 py-4 whitespace-no-wrap border">{user.FullName}</td>
               <td className="px-6 py-4 whitespace-no-wrap border">{user.Email}</td>
@@ -104,14 +120,15 @@ const User: React.FC<UserProps> = ({ role }) => {
               <td className="px-6 py-4 whitespace-no-wrap border">{user.Status}</td>
               <td className="px-6 py-4 whitespace-no-wrap border">
                 {role && role.toLowerCase() === 'super admin' && (
-                  <button className="flex items-center">
+                  <button className="flex items-center" onClick={() => console.log("Edit clicked")}>
                     <FontAwesomeIcon icon={faEdit} size="lg" />
                   </button>
                 )}
               </td>
               <td className="px-6 py-4 whitespace-no-wrap border">
                 {role && role.toLowerCase() === 'super admin' && (
-                  <button className="flex items-center">
+                  <button className="flex items-center" 
+                  onClick={() => deleteUsers(user?.ID)}>
                     <FontAwesomeIcon icon={faTrash} size="lg" />
                   </button>
                 )}
