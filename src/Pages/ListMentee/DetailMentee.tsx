@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 import Sidebar from '../../Components/Sidebar'
 import Navbar from '../../Components/Navbar'
@@ -10,6 +11,7 @@ import DetailFeedback from '../../Components/Layout/DetailFeedback'
 const DetailMentee = () => {
     const location = useLocation()
     const id = location?.state?.id
+    const token = Cookies.get("token");
 
     const [detailMentee, setDetailMentee] = useState<any[]>([])
     const [feedback, setFeedback] = useState<[]>([])
@@ -17,24 +19,34 @@ const DetailMentee = () => {
     const getDetailMentee = (id: any) => {
         axios
             .get(`https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees/${id}`)
+            // .get(`mentees/${id}`, {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`,
+            //     },
+            // })
             .then((response) => {
                 // console.log(response);
                 setDetailMentee(response?.data?.data);
             })
             .catch((error) => {
-                console.log('Error From API Mentee : ',error);
+                console.log('Error From API Mentee : ', error);
             })
     }
 
     const getFeedbackMentee = (id: any) => {
         axios
             .get(`https://virtserver.swaggerhub.com/BE-18/ALTA_Project/1.0.0/mentees/${id}/feedback`)
+            // .get(`/mentees/${id}`, {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`,
+            //     },
+            // })
             .then((response) => {
-                console.log("feedback mentee : ",response)
+                // console.log("feedback mentee : ", response)
                 setFeedback(response?.data?.data?.feedbacks)
             })
             .catch((error) => {
-                console.log('Error From API Feedback : ',error);
+                console.log('Error From API Feedback : ', error);
             })
     }
 
