@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import Cookies from "js-cookie"
 import Navbar from "../../Components/Navbar";
@@ -13,15 +13,15 @@ function NewClassPage({}: Props) {
   const navigate = useNavigate()
   const token = Cookies.get("token");
   const [name, setName] = useState();
-  const [batch, setBatch] = useState();
+  // const [batch, setBatch] = useState();
 
   const handleName = (e: any) => {
     setName(e?.target?.value);
   } 
 
-  const handleBatch = (e: any) => {
-    setBatch(e?.target?.value);
-  }
+  // const handleBatch = (e: any) => {
+  //   setBatch(e?.target?.value);
+  // }
 
   const submitClass = () => {
     axios.post('http://54.252.240.166/classes', {

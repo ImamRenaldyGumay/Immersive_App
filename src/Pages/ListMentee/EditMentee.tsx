@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import Swal from 'sweetalert2'
 import { useLocation, useNavigate } from 'react-router'
@@ -153,8 +153,8 @@ const EditMentee = () => {
                                         type="text"
                                         id='full_name'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
-                                        value={editData.full_name}
-                                        onChange={(e) => setFull_name(e.target.value)}
+                                        // value={editData.full_name}
+                                        // onChange={(e) => setFull_name(e.target.value)}
                                         />
                                 </div>
                                 <div className='flex justify-between mb-3 items-center'>
@@ -163,8 +163,9 @@ const EditMentee = () => {
                                         type="text"
                                         id='current_address'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
-                                        value={editData.current_address}
-                                        onChange={handlecurrent_address} />
+                                        // value={editData.current_address}
+                                        onChange={handlecurrent_address} 
+                                        />
                                 </div>
                                 <div className='flex justify-between mb-3 items-center'>
                                     <label htmlFor="HomeAddress" className='md:w-2/12 font-medium text-blue-500'>Home Address</label>
@@ -172,7 +173,7 @@ const EditMentee = () => {
                                         type="text"
                                         id='home_address'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
-                                        value={editData.home_address}
+                                        // value={editData.home_address}
                                         onChange={handlehome_address} />
                                 </div>
                                 <div className='flex justify-between mb-3 items-center'>
@@ -181,7 +182,7 @@ const EditMentee = () => {
                                         type="email"
                                         id='email'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
-                                        value={editData.email}
+                                        // value={editData.email}
                                         onChange={handleEmail} />
                                 </div>
                                 <div className='mb-3 flex'>
@@ -195,7 +196,7 @@ const EditMentee = () => {
                                                 value="male"
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                                                 onChange={handleGender}
-                                                checked={editData.gender === 'Male'}
+                                                // checked={editData.gender === 'Male'}
                                             />
                                             <label htmlFor="inline-radio" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
                                         </div>
@@ -207,7 +208,7 @@ const EditMentee = () => {
                                                 value="male"
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                                                 onChange={handleGender}
-                                                checked={editData.gender === 'Female'}
+                                                // checked={editData.gender === 'Female'}
                                             />
                                             <label htmlFor="inline-2-radio" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
                                         </div>
@@ -219,7 +220,7 @@ const EditMentee = () => {
                                         type="text"
                                         id='telegram'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
-                                        value={editData.telegram}
+                                        // value={editData.telegram}
                                         onChange={handleTelegram} />
                                 </div>
                                 <div className='flex justify-between mb-3 items-center'>
@@ -228,7 +229,7 @@ const EditMentee = () => {
                                         type="text"
                                         id='phone'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
-                                        value={editData.phone}
+                                        // value={editData.phone}
                                         onChange={handlePhone} />
                                 </div>
                             </div>
@@ -243,7 +244,7 @@ const EditMentee = () => {
                                         type="text"
                                         id='emergency_name'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
-                                        value={editData.emergency_name}
+                                        // value={editData.emergency_name}
                                         onChange={handleEmergency_name} />
                                 </div>
                                 <div className='flex justify-between mb-3 items-center'>
@@ -252,7 +253,7 @@ const EditMentee = () => {
                                         type="text"
                                         id='emergency_phone'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
-                                        value={editData.emergency_phone}
+                                        // value={editData.emergency_phone}
                                         onChange={handleEmergency_phone} />
                                 </div>
                                 <div className='flex justify-between mb-3 items-center'>
@@ -261,7 +262,7 @@ const EditMentee = () => {
                                         id='emergency_status'
                                         onChange={handleEmergency_status}
                                         className='md:w-10/12 rounded-lg'>
-                                        <option value={editData.emergency_status}>{editData.emergency_status}</option>
+                                        {/* <option value={editData.emergency_status}>{editData.emergency_status}</option> */}
                                         <option value="orang_tua">Orang Tua</option>
                                         <option value="kakek_nenek">Kakek Nenek</option>
                                         <option value="saudara_ortu">Saudara dari Orang Tua Kandung</option>
@@ -283,7 +284,7 @@ const EditMentee = () => {
                                                 value="informatics"
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                                                 onChange={handleType}
-                                                checked={editData.education_type === 'informatics'}
+                                                // checked={editData.education_type === 'informatics'}
                                             />
                                             <label htmlFor="inline-radio" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Informatics</label>
                                         </div>
@@ -295,7 +296,7 @@ const EditMentee = () => {
                                                 value="non-informatics"
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                                                 onChange={handleType}
-                                                checked={editData.education_type === 'non-informatics'}
+                                                // checked={editData.education_type === 'non-informatics'}
                                             />
                                             <label htmlFor="inline-2-radio" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">non-informatics</label>
                                         </div>
@@ -307,7 +308,7 @@ const EditMentee = () => {
                                         type="text"
                                         id='major'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
-                                        value={editData.major}
+                                        // value={editData.major}
                                         onChange={handleMajor} />
                                 </div>
                                 <div className='flex justify-between mb-3 items-center'>
@@ -316,7 +317,7 @@ const EditMentee = () => {
                                         type="text"
                                         id='graduate'
                                         className='md:w-10/12 p-2 border rounded-md shadow-lg'
-                                        value={editData.graduate}
+                                        // value={editData.graduate}
                                         onChange={handleGraduate} />
                                 </div>
 
